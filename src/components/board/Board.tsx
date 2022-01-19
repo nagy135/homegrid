@@ -33,15 +33,16 @@ export const Board = (props: TBoardState) => {
 
   return (
     <>
-      {pieceStates.map((pieceState) =>
+      {pieceStates.map((pieceState, i) =>
         <Piece
+          key={i}
           x={pieceState.x}
           y={pieceState.y}
           x2={pieceState.x2}
           y2={pieceState.y2}
           item={pieceState.item}
         />
-      )};
+      )}
     </>
   )
 }

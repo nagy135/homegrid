@@ -1,11 +1,20 @@
+import { CSSProperties } from "react";
 import "./Piece.css";
 import { TPieceState } from './Piece.d';
 
-export const Piece = (props: TPieceState) => {
-  console.log("================\n", "props: ", props, "\n================");
+export const Piece = ({ x, y, x2, y2, item }: TPieceState) => {
+  console.log("================\n", "props: ", x, y, x2, y2, "\n================");
+  const styles: CSSProperties = {
+    top: `${y * 10}vh`,
+    left: `${x * 10}vw`,
+    width: `${(x2 - x + 1) * 10}vw`,
+    height: `${(y2 - y + 1) * 10}vh`,
+    lineHeight: `${(y2 - y + 1) * 10}vh`,
+    backgroundColor: item.color,
+  };
   return (
-    <>
-      piece
-    </>
-  )
+    <div className="piece" style={styles}>
+      {item.name}
+    </div>
+  );
 }
