@@ -5,3 +5,8 @@
     font-size: xx-large;
     cursor: pointer;
 }
+.piece > img {
+    height: 10vh;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}

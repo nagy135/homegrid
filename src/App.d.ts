@@ -1,7 +1,7 @@
 export type TItem = {
   name: string;
   color: string;
-  icon: string;
+  icon?: string;
   url: string;
 }
 
