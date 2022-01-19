@@ -3,7 +3,7 @@ import { TItem } from '../../App.d';
 export type TPieceState = {
   x: number;
   y: number;
-  width: number;
-  height: number;
+  x2: number;
+  y2: number;
   item: TItem;
 }

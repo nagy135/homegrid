@@ -8,6 +8,6 @@ export type TBoardState = {
 export type TPieceSizeHolder = {
   x: number;
   y: number;
-  width: number;
-  height: number;
+  x2: number; // the other corner x
+  y2: number; // the other corner y
 };

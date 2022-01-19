@@ -1,27 +1,47 @@
+import { useMemo, useState } from "react";
+import Piece from "../piece";
+import { TPieceState } from "../piece/Piece.d";
 import "./Board.css";
-import { TBoardState, TPieceSizeHolder } from './Board.d';
+import { TBoardState } from './Board.d';
 
-export const Board = (props: TBoardState) => {
-  const {items, indexes} = props;
-  console.log("================\n", "items: ", items, "\n================");
-  console.log("================\n", "indexes: ", indexes, "\n================");
-  let sizes: TPieceSizeHolder[] = [];
-  for (let y = 0; y < indexes.length; y++){
-    for (let x = 0; x < indexes[0].length; x++){
+const calculateSizes = (boardState: TBoardState): TPieceState[] => {
+  const { indexes, items } = boardState;
+  const sizes: TPieceState[] = [];
+  for (let y = 0; y < indexes.length; y++) {
+    for (let x = 0; x < indexes[0].length; x++) {
       const index = indexes[y][x];
-      if (sizes[index] === undefined){
+      if (sizes[index] === undefined) {
         sizes[index] = {
           x,
           y,
-          width: 1,
-          height: 1,
+          x2: x,
+          y2: y,
+          item: items[index],
         };
+      } else {
+        sizes[index].x2 = x;
+        sizes[index].y2 = y;
       }
     }
   }
+  return sizes;
+};
+
+export const Board = (props: TBoardState) => {
+  const sizes = useMemo(() => calculateSizes(props), []);
+  const [pieceStates, _setPieceStates] = useState<TPieceState[]>(sizes);
+
   return (
     <>
-      board
+      {pieceStates.map((pieceState) =>
+        <Piece
+          x={pieceState.x}
+          y={pieceState.y}
+          x2={pieceState.x2}
+          y2={pieceState.y2}
+          item={pieceState.item}
+        />
+      )};
     </>
   )
 }
