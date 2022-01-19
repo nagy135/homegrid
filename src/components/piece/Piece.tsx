@@ -3,7 +3,6 @@ import "./Piece.css";
 import { TPieceState } from './Piece.d';
 
 export const Piece = ({ x, y, x2, y2, item }: TPieceState) => {
-  console.log("================\n", "props: ", x, y, x2, y2, "\n================");
   const styles: CSSProperties = {
     top: `${y * 10}vh`,
     left: `${x * 10}vw`,
@@ -13,7 +12,12 @@ export const Piece = ({ x, y, x2, y2, item }: TPieceState) => {
     backgroundColor: item.color,
   };
   return (
-    <div className="piece" style={styles}>
+    <div
+      className="piece"
+      style={styles}
+      onClick={() => {
+        window.location.href = item.url
+      }}>
       {item.name}
     </div>
   );
