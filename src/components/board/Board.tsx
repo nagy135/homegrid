@@ -45,7 +45,6 @@ const calculateSizes = (boardState: TBoardState): TPieceState[] => {
 
 export const Board = (props: TBoardState) => {
   const sizes = useMemo(() => calculateSizes(props), []);
-  console.log("================\n", "sizes: ", sizes, "\n================");
   const [pieceStates, _setPieceStates] = useState<TPieceState[]>(sizes);
 
   return (
