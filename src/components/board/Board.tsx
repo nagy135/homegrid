@@ -7,21 +7,37 @@ import { TBoardState } from './Board.d';
 const calculateSizes = (boardState: TBoardState): TPieceState[] => {
   const { indexes, items } = boardState;
   const sizes: TPieceState[] = [];
+  const visited: Set<string> = new Set();
   for (let y = 0; y < indexes.length; y++) {
     for (let x = 0; x < indexes[0].length; x++) {
+      if (visited.has(`${y},${x}`)) continue;
       const index = indexes[y][x];
-      if (sizes[index] === undefined) {
-        sizes[index] = {
-          x,
-          y,
-          x2: x,
-          y2: y,
-          item: items[index],
-        };
-      } else {
-        sizes[index].x2 = x;
-        sizes[index].y2 = y;
+      // move DOWN as far a possible
+      let xSearch = x;
+      while (xSearch < indexes[0].length && indexes[y][xSearch] == index) {
+        xSearch++;
+      };
+      // move DOWN as far a possible
+      let ySearch = y;
+      while (ySearch < indexes.length && indexes[ySearch][xSearch-1] == index) {
+        ySearch++;
+      };
+      // add all points to visited, validating if its rectangle
+      for (let yy = y; yy < ySearch; yy++) {
+        for (let xx = x; xx < xSearch; xx++) {
+          if (indexes[yy][xx] == index)
+            visited.add(`${yy},${xx}`);
+          else
+            throw "Shape is not rectangle!";
+        }
       }
+      sizes.push({
+        x,
+        y,
+        x2: xSearch - 1,
+        y2: ySearch - 1,
+        item: items[index],
+      });
     }
   }
   return sizes;
@@ -29,6 +45,7 @@ const calculateSizes = (boardState: TBoardState): TPieceState[] => {
 
 export const Board = (props: TBoardState) => {
   const sizes = useMemo(() => calculateSizes(props), []);
+  console.log("================\n", "sizes: ", sizes, "\n================");
   const [pieceStates, _setPieceStates] = useState<TPieceState[]>(sizes);
 
   return (
