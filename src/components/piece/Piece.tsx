@@ -19,6 +19,11 @@ export const Piece = ({ x, y, x2, y2, item }: TPieceState) => {
     backgroundColor: item.color,
   };
 
+  const imageStyles: CSSProperties = {
+    top: `${(height) / 2}vh`,
+    left: `${(width) / 2}vw`,
+  };
+
   return (
     <div
       className="piece"
@@ -27,8 +32,11 @@ export const Piece = ({ x, y, x2, y2, item }: TPieceState) => {
         window.location.href = item.url
       }}>
       {item.icon
-        ? <i className={item.icon}></i>
-        : <span>item.name</span>}
+        ? <img
+          src={item.icon}
+          style={imageStyles}
+          alt="image" />
+        : item.name}
     </div>
   );
 }
