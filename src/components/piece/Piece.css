@@ -10,11 +10,10 @@
 .piece:hover {
     z-index: 9999;
     border: 1px solid white;
-    transform: scale(102%, 102%);
     opacity: 0.8;
 }
-.piece > img {
-    height: 10vh;
-    position: absolute;
-    transform: translate(-50%, -50%);
+.icon {
+    font-size: 4rem;
+    display: block;
+    transform: translateX(-0.7rem);
 }
