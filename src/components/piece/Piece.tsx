@@ -26,11 +26,9 @@ export const Piece = ({ x, y, x2, y2, item }: TPieceState) => {
       onClick={() => {
         window.location.href = item.url
       }}>
-      <span className="icon">
-        {item.icon
-          ? item.icon
-          : item.name}
-      </span>
+      {item.icon
+        ? <i className={item.icon}></i>
+        : <span>item.name</span>}
     </div>
   );
 }
