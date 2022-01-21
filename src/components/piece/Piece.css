@@ -10,7 +10,6 @@
 .piece:hover {
     z-index: 9999;
     border: 1px solid white;
-    transform: scale(102%, 102%);
     opacity: 0.8;
 }
 .piece > img {
