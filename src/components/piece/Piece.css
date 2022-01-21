@@ -14,7 +14,7 @@
     opacity: 0.8;
 }
 .piece > img {
-    height: 10vh;
+    height: 6vh;
     position: absolute;
     transform: translate(-50%, -50%);
 }
