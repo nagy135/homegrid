@@ -10,17 +10,20 @@ export const Piece = ({ x, y, x2, y2, item }: TPieceState) => {
   const width = (x2 - x + 1) * 10;
   const height = (y2 - y + 1) * 10;
 
+  // fix mobile top bar issue with vh
+  let vh = window.innerHeight * 0.01;
+
   const styles: CSSProperties = {
-    top: `${top + GAP}vh`,
+    top: `${(top + GAP)*vh}px`,
     left: `${left + GAP}vw`,
     width: `${width - GAP * 2}vw`,
-    height: `${height - GAP * 2}vh`,
-    lineHeight: `${height - GAP * 2}vh`,
+    height: `${(height - GAP * 2)*vh}px`,
+    lineHeight: `${(height - GAP * 2)*vh}px`,
     backgroundColor: item.color,
   };
 
   const imageStyles: CSSProperties = {
-    top: `${(height) / 2}vh`,
+    top: `${((height) / 2)*vh}px`,
     left: `${(width) / 2}vw`,
   };
 
